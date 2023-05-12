@@ -41,7 +41,7 @@ All robot devices are given a name through the settings on the driver station. F
 
 ### Motor options
 
-Usually, the motors on the left side of the robot will have their +s and -s switched. This makes them run backwards, which can be counteracted like this:
+Usually, the motors on the left side of the robot will have their + and - switched. This makes them run backwards, which can be counteracted like this:
 
 `frontLeftMotor.setDirection(DcMotor.Direction.REVERSE);`
 
@@ -49,7 +49,7 @@ Encoders inside each motor track exactly how much it has spun. To use them corre
 
 `frontLeftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);`
 
-By default, when the code stops supplying power to a motor, the robot won't try to stop its rotation. This code will make the robot brake on zero power:
+By default, when the code stops supplying power to a motor, the robot won't actively try to stop its rotation. This code will make the robot brake on zero power:
 
 `frontLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);`
 
@@ -63,9 +63,9 @@ Referencing a distance sensor: `DistanceSensor distanceSensor = hardwareMap.get(
 
 ### Motors
 
-Basic usage: `frontLeftMotor.setPower(1.0);` Power must be between -1 and 1.
+Basic usage: `frontLeftMotor.setPower(1.0);` Power must be between -1 and 1 (negative numbers go backwards).
 
-If you reset the encoders during the init code, you can now turn them on: `frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);` (Note: you should do this just before the `while ( opModeIsActive() )` loop because you only need to do it once.)
+If you reset STOP_AND_RESET_ENCODERS'd during the init code, you should now turn them on: `frontLeftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);` (Note: you should do this just before the `while ( opModeIsActive() )` loop because you only need to do it once after the start button is pressed.)
 
 Then you can use `frontLeftMotor.getCurrentPosition()` to see the net rotation of the wheel since the start of the opmode. It is important to note that the output of this function will be in encoder ticks which vary from motor to motor. The motors we usually use have 537.6 ticks per revolution, and the mecanum wheels we use have a diameter of 96mm (and a circumference of pi * 96mm).
 
